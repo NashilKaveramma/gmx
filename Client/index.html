@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Login</title>
+	<script type="text/javascript">
+	function loginDetails(){
+			var username = document.getElementById('uname').value;
+			var password = document.getElementById('pass').value;
+
+			var xhttp = new XMLHttpRequest();
+			var URL = "http://localhost:9001/userInfo/";
+			var params = "username="+username+"&password="+password;
+			xhttp.open( "POST", URL, true );
+			xhttp.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
+	        xhttp.onreadystatechange = function() { 
+	        if ( xhttp.readyState === 4 && xhttp.status === 200 ) {
+	            string = xhttp.responseText;
+	           	document.getElementById('info').innerText = string;
+	         }
+	       }
+	       xhttp.send(params);
+	   }
+	</script>
+</head>
+<body>
+		<input type="text" name="username" id="uname">
+		<input type="password" name="password" id="pass">
+		<button id="loginbutton" onclick="loginDetails()">Login</button>
+		<div id="info">
+		</div>
+</body>
+</html>
